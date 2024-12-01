@@ -16,22 +16,22 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: (entrar) ? Colors.black : Colors.brown[900],
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: (entrar) ? Colors.red : Colors.deepOrangeAccent,
-        title: Text(
-          (entrar) ? "Tela de Login" : "Tela de Cadastro",
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
+      backgroundColor: (entrar) ? const Color.fromRGBO(58, 109, 140, 1) : Colors.brown[900],
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   backgroundColor: (entrar) ? Colors.red : Colors.deepOrangeAccent,
+      //   title: Text(
+      //     (entrar) ? "Tela de Login" : "Tela de Cadastro",
+      //     style: const TextStyle(
+      //       color: Colors.white,
+      //       fontSize: 18,
+      //       fontWeight: FontWeight.w500,
+      //     ),
+      //   ),
+      // ),
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+          padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
           child: Form(
             key: _formKey,
             child: Column(
@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
                   (entrar)
                       ? Icons.account_circle_rounded
                       : Icons.account_circle_outlined,
-                  color: Colors.white,
+                  color: const Color.fromRGBO(234, 216, 177, 1),
                   size: 110,
                 ),
                 const SizedBox(height: 20),
@@ -91,12 +91,13 @@ class _LoginState extends State<Login> {
                   },
                   decoration: InputDecoration(
                     hintText: "E-mail",
-                    fillColor: Colors.white,
+                    fillColor: const Color.fromRGBO(234, 216, 177, 1),
+                    
                     filled: true,
                     hintStyle: const TextStyle(
-                      color: Colors.black,
+                      color: Color.fromRGBO(0, 31, 63, 1),
                       fontSize: 16,
-                      fontWeight: FontWeight.w200,
+                      fontWeight: FontWeight.w300,
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -108,7 +109,7 @@ class _LoginState extends State<Login> {
                     fontWeight: FontWeight.w200,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 14),
                 TextFormField(
                   validator: (String? value) {
                     if (value == null) {
@@ -120,12 +121,12 @@ class _LoginState extends State<Login> {
                   },
                   decoration: InputDecoration(
                     hintText: "Senha",
-                    fillColor: Colors.white,
+                    fillColor:const Color.fromRGBO(234, 216, 177, 1),
                     filled: true,
                     hintStyle: const TextStyle(
-                      color: Colors.black,
+                      color: Color.fromRGBO(0, 31, 63, 1),
                       fontSize: 16,
-                      fontWeight: FontWeight.w200,
+                      fontWeight: FontWeight.w300,
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -185,7 +186,7 @@ class _LoginState extends State<Login> {
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              (entrar) ? Colors.red : Colors.deepOrangeAccent,
+                              (entrar) ? const Color.fromRGBO(106, 154, 176, 1) : Colors.deepOrangeAccent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           )),
