@@ -210,6 +210,7 @@ class _LoginState extends State<Login> {
     if (_formKey.currentState!.validate()) {
       if(entrar) {
         print("Entrada validada!");
+        _authServ.logUser(email: email, senha: senha);
       }
       else{
         print("Cadastro validado!");
