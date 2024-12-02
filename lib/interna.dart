@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkly/auth.dart';
 
 class Interna extends StatefulWidget {
   const Interna({super.key});
@@ -61,7 +62,9 @@ class _InternaState extends State<Interna> {
                     color: Colors.black,
                   )),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  AuthService().logout();
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                     shape: RoundedRectangleBorder(
