@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:linkly/auth.dart';
 
 class Login extends StatefulWidget {
   // ignore: use_super_parameters
@@ -12,6 +14,12 @@ class _LoginState extends State<Login> {
   bool entrar = true;
 
   final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _nomeController = TextEditingController();
+
+  final AuthService _authServ = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +55,7 @@ class _LoginState extends State<Login> {
                 Visibility(
                   visible: !entrar,
                   child: TextFormField(
+                    controller: _nomeController,
                     validator: (String? value) {
                       if (value == null) {
                         return "O campo Nome precisa ser preenchido!";
@@ -77,6 +86,7 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
+                  controller: _emailController,
                   validator: (String? value) {
                     if (value == null) {
                       return "O campo E-mail precisa ser preenchido!";
@@ -111,6 +121,7 @@ class _LoginState extends State<Login> {
                 ),
                 const SizedBox(height: 14),
                 TextFormField(
+                  controller: _senhaController,
                   validator: (String? value) {
                     if (value == null) {
                       return "O campo Senha precisa ser preenchido!";
@@ -145,35 +156,6 @@ class _LoginState extends State<Login> {
                     child: Column(
                       children: [
                         const SizedBox(height: 5),
-                        TextFormField(
-                          validator: (String? value) {
-                            if (value == null) {
-                              return "O campo de confirmar senha precisa ser preenchido!";
-                            } else if (value.length < 8) {
-                              return "O campo de confirmar senha precisa ter o mínimo de 8 caracteres!";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            hintText: "Confirmar senha",
-                            fillColor: Colors.white,
-                            filled: true,
-                            hintStyle: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w200,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w200,
-                          ),
-                          obscureText: true,
-                        ),
                       ],
                     )),
                 Padding(
@@ -221,8 +203,21 @@ class _LoginState extends State<Login> {
   }
 
   botaoEntrar() {
+    String email = _emailController.text;
+    String senha = _senhaController.text;
+    String nome = _nomeController.text;
+
     if (_formKey.currentState!.validate()) {
-      print("Formulário funcionando!");
+      if(entrar) {
+        print("Entrada validada!");
+      }
+      else{
+        print("Cadastro validado!");
+        print("${_emailController.text}");
+        print("${_senhaController.text}");
+        print("${_nomeController.text}");
+        _authServ.cadUser(email: email, senha: senha, nome: nome);
+      }
     } else {
       print("Formulário não funcionando!");
     }
